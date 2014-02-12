@@ -1,0 +1,4 @@
+MyLotteries
+===========
+
+a lotteries reminder
