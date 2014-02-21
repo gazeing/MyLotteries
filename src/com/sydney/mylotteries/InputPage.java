@@ -4,7 +4,7 @@ public class InputPage extends AppPage {
 
 	
 	protected InputPage() {
-		super(R.layout.input_page);
+		super(R.layout.page_input);
 		
 	}
 

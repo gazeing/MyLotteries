@@ -4,7 +4,7 @@ public class HistoryPage extends AppPage {
 
 	
 	protected HistoryPage() {
-		super(R.layout.histroy_page);
+		super(R.layout.page_histroy);
 		
 	}
 

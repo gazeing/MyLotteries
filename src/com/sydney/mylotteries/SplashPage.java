@@ -11,7 +11,7 @@ public class SplashPage extends AppPage {
 	private static final int SPLASH_DISPLAY_TIME = 3000;
 
 	protected SplashPage() {
-		super(R.layout.splash_page);
+		super(R.layout.page_splash);
 		
 	}
 

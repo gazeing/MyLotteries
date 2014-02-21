@@ -4,7 +4,7 @@ public class DividendsPage extends AppPage {
 
 	
 	protected DividendsPage() {
-		super(R.layout.dividends_page);
+		super(R.layout.page_dividends);
 		
 	}
 
