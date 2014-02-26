@@ -54,7 +54,7 @@ public final class InputFactory implements UiStorage.Entity {
 			throw (new ClassNotFoundException());
 		
 		impl.setDelegate(aDelegate);
-		return impl.doStart(aParam);
+		return aDelegate.onStart(aParam);
 	}
 	
 	private synchronized static InputFactory getInstance()  

@@ -10,13 +10,6 @@ public abstract class InputImpl {
 	public abstract int getType();
 	
 	/**
-	 * Interface to start a new Input delegate
-	 * @param aParam Gson param to initialize the delegate
-	 * @return
-	 */
-	public abstract boolean doStart(Gson aParam);
-	
-	/**
 	 * API to cancel the input.
 	 */
 	public final void doCancel() {
