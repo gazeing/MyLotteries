@@ -15,12 +15,12 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-public class SlideOutView extends ViewGroup {
+public class SlideViewGroup extends ViewGroup {
 	/**
 	 * Constructor while create a new instance directly in code
 	 * @param context
 	 */
-	public SlideOutView(Context context) {
+	public SlideViewGroup(Context context) {
 		super(context);
 		doInit(context);
 	}
@@ -30,7 +30,7 @@ public class SlideOutView extends ViewGroup {
 	 * @param context
 	 * @param attrs
 	 */
-	public SlideOutView(Context context, AttributeSet attrs) {
+	public SlideViewGroup(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		doInit(context);
 	}
@@ -325,10 +325,10 @@ public class SlideOutView extends ViewGroup {
 	 */
 	private void doMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		// Left view.
-		SlideOutView.measureSlideOut(mLeftView, mViewMargin, widthMeasureSpec, heightMeasureSpec);
+		SlideViewGroup.measureSlideOut(mLeftView, mViewMargin, widthMeasureSpec, heightMeasureSpec);
 		
 		// Right view.
-		SlideOutView.measureSlideOut(mRightView, mViewMargin, widthMeasureSpec, heightMeasureSpec);
+		SlideViewGroup.measureSlideOut(mRightView, mViewMargin, widthMeasureSpec, heightMeasureSpec);
 		
 		// Main view.
 		if( null != mMainView ) {
