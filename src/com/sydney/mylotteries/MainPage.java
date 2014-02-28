@@ -16,57 +16,24 @@ public class MainPage extends AppPage {
 	
 	
 
+	
+
+
+
 	@Override
-	protected void onButtonClick(int nButtonId) {
-		// TODO Auto-generated method stub
-		super.onButtonClick(nButtonId);
+	protected void onCreate() {
 		
-		switch(nButtonId) 
-		{
-		case R.id.button1:
-			{
-				// Start input activity.
-				// Save the info.
-				Log.d("test","button1");
-				Bundle pBundle = new Bundle();
-				// Show main page.
-				this.postEvent(AppConfig.KInput, pBundle);
-			}
-			break;
-			
-		case R.id.button2:
-		{
-			// Start history activity.
-			// Save the info.
-			Bundle pBundle = new Bundle();
-			// Show main page.
-			this.postEvent(AppConfig.KHistory, pBundle);
-		}
-		break;
-		
-		
-		case R.id.button3:
-		{
-			// Start generate activity.
-			// Save the info.
-			Bundle pBundle = new Bundle();
-			// Show main page.
-			this.postEvent(AppConfig.KGenerate, pBundle);
-		}
-		break;
-		
-		case R.id.button4:
-		{
-			// Start dividends activity.
-			// Save the info.
-			Bundle pBundle = new Bundle();
-			// Show main page.
-			this.postEvent(AppConfig.KDividend, pBundle);
-		}
-		break;
-		}
+		super.onCreate();
+		addOnClick(R.id.button1);
+		addOnClick(R.id.button2);
+		addOnClick(R.id.button3);
+		addOnClick(R.id.button4);
 		
 	}
+
+
+
+
 
 
 
