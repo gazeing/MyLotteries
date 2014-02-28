@@ -1,6 +1,7 @@
 package com.sydney.mylotteries.input;
 
 import com.google.gson.Gson;
+import com.sydney.mylotteries.model.InputResult;
 
 public interface InputDelegate {
 	/**
@@ -14,10 +15,10 @@ public interface InputDelegate {
 	 * Interface when new result responses.
 	 * @param aParam
 	 */
-	public void onResult(Gson aResult);
+	public void onResult(InputResult aResult);
 	
 	/**
-	 * Interface when input approach canceled
+	 * Interface when input approach giveup
 	 */
-	public void onCancel();
+	public void onGiveup();
 }

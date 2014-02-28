@@ -13,5 +13,20 @@
 
         android:numColumns="7" >
     </GridView>
+    
+    <EditText android:id="@+id/input_group_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/input_group_1"
+        android:inputType="number"/>
+    
+    <Button android:id="@+id/input_okay"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/okay"
+        android:layout_below="@id/input_group_1"/>
 
 </RelativeLayout>

@@ -19,5 +19,6 @@
     <string name="set_avatar_message">Select one of the options to get the image of the Product</string>
     <string name="take_picture">Take Picture</string>
     <string name="from_album">From Album</string>
+    <string name="input_group_1">input group 1</string>
 
 </resources>

@@ -1,10 +1,8 @@
 package com.sydney.mylotteries.input;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.crazybean.framework.UiStorage;
 import com.google.gson.Gson;
+import com.sydney.mylotteries.model.InputResult;
 
 public final class InputFactory implements UiStorage.Entity {
 	/**
@@ -17,15 +15,29 @@ public final class InputFactory implements UiStorage.Entity {
 	public static final int TYPE_UNKNOWN  = (TYPE_NONE + 4);
 	
 	/**
+	 * Key definition of Gson.
+	 */
+	public static final String KEY_TYPE  = "type";
+	public static final String KEY_VALUE = "value";
+	
+	/**
 	 * Start the input method.
 	 * @param nType
 	 * @param aParam
 	 * @param aDelegate
 	 * @return
 	 */
-	public static boolean startInput(int nType, Gson aParam, InputDelegate aDelegate) throws ClassNotFoundException {
+	public static boolean startInput(Gson aParam, InputDelegate aDelegate) {
 		InputFactory factory = InputFactory.getInstance();
-		return factory.tryStart(nType, aParam, aDelegate);
+		return factory.tryStart(aParam, aDelegate);
+	}
+	
+	public static void setResult(InputResult aResult) {
+		InputFactory factory = InputFactory.getInstance();
+		if( null != factory.mCurrent ) {
+			factory.mCurrent.onResult(aResult);
+			factory.mCurrent = null;
+		}
 	}
 	
 	/**
@@ -36,24 +48,10 @@ public final class InputFactory implements UiStorage.Entity {
 	 * @return
 	 * @throws ClassNotFoundException 
 	 */
-	private boolean tryStart(int nType, Gson aParam, InputDelegate aDelegate) throws ClassNotFoundException {
-		if( (TYPE_NONE == nType) || (nType >= TYPE_UNKNOWN) || (null == aDelegate) )
+	private boolean tryStart(Gson aParam, InputDelegate aDelegate) {
+		if( null == aDelegate )
 			return false;
 		
-		final int nSize = mImpls.size();
-		InputImpl impl = null;
-		for( int nIdx = 0; nIdx < nSize; nIdx++ ) {
-			InputImpl entity = mImpls.get(nIdx);
-			if( entity.getType() == nType ) {
-				impl = entity;
-				break;
-			}
-		}
-		
-		if( null == impl )
-			throw (new ClassNotFoundException());
-		
-		impl.setDelegate(aDelegate);
 		return aDelegate.onStart(aParam);
 	}
 	
@@ -63,7 +61,6 @@ public final class InputFactory implements UiStorage.Entity {
 		Object pObject = UiStorage.getEntity(InputFactory.class);
 		if ( null == pObject ) {
 			pFactory = new InputFactory();
-			pFactory.initialize();
 			UiStorage.setEntity(pFactory);
 		} else {
 			pFactory = (InputFactory)pObject;
@@ -74,27 +71,13 @@ public final class InputFactory implements UiStorage.Entity {
 	
 	@Override
 	public void doFinalize() {
-		if( null != mImpls ) {
-			for( InputImpl impl : mImpls ) {
-				impl.doCancel();
-			}
-			
-			// Clean up.
-			mImpls.clear();
-			mImpls = null;
+		if( null != mCurrent ) {
+			mCurrent.onGiveup();
 		}
-	}
-	
-	/**
-	 * Load all available implementation for input approaches.
-	 */
-	private void initialize() {
-		// Load all available implements to array.
-		mImpls = new ArrayList<InputImpl>();
 	}
 	
 	private InputFactory() {
 	}
 	
-	private List<InputImpl>  mImpls;
+	private InputDelegate mCurrent;
 }

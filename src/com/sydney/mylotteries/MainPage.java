@@ -2,23 +2,22 @@ package com.sydney.mylotteries;
 
 
 
+import com.google.gson.Gson;
+import com.sydney.mylotteries.input.InputDelegate;
+import com.sydney.mylotteries.input.InputFactory;
+import com.sydney.mylotteries.model.InputResult;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class MainPage extends AppPage {
-
+public class MainPage extends AppPage implements InputDelegate {
 	
 	protected MainPage() {
 		super(R.layout.page_main);
 		
 	}
 	
-	
-
-	
-
-
 
 	@Override
 	protected void onCreate() {
@@ -30,11 +29,6 @@ public class MainPage extends AppPage {
 		addOnClick(R.id.button4);
 		
 	}
-
-
-
-
-
 
 
 	@Override
@@ -49,9 +43,8 @@ public class MainPage extends AppPage {
 				// Start input activity.
 				// Save the info.
 				Log.d("test","button1");
-				Bundle pBundle = new Bundle();
-				// Show main page.
-				this.postEvent(AppConfig.KInput, pBundle);
+				
+				InputFactory.startInput(null, this);
 			}
 			break;
 			
@@ -86,8 +79,26 @@ public class MainPage extends AppPage {
 		}
 		break;
 		}
-		
 	}
 	
-	
+	@Override
+	public boolean onStart(Gson aParam) {
+		Bundle pBundle = new Bundle();
+		// Show main page.
+		this.postEvent(AppConfig.KInput, pBundle);
+		
+		return true;
+	}
+
+
+	@Override
+	public void onResult(InputResult aResult) {
+	}
+
+
+	@Override
+	public void onGiveup() {
+		// TODO Auto-generated method stub
+		
+	}
 }
